@@ -2,7 +2,7 @@ import './Expenses.scss';
 import ExpenseItem from "./ExpenseItem";
 import Card from '../UI/Card';
 
-function Expenses({list}) {
+const Expenses = ({list}) => {
   return(
     <Card className="expenses">
     {list.map((list, i) => {
