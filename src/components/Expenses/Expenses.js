@@ -4,22 +4,26 @@ import Card from '../UI/Card';
 import ExpensesFilter from './ExpensesFilter';
 import './Expenses.scss';
 
-const Expenses = ({list}) => {
+const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState('2020');
 
   const storeFilteredYear = (filteredYearValue) => {
     setFilteredYear(filteredYearValue);
   }
 
+  const filteredExpenses = props.expenseList.filter(expense => { return expense.date.getFullYear().toString() === filteredYear } );
+
   return(
     <div>
-      <ExpensesFilter selected={filteredYear} sendFilteredYear={storeFilteredYear}/>
       <Card className="expenses">
-      {list.map((list, i) => {
-        return (
-          <ExpenseItem key={i} title={list.title} amount={list.amount} date={list.date} />
-        );
-      })}
+        <ExpensesFilter selected={filteredYear} sendFilteredYear={storeFilteredYear}/>
+        {
+        filteredExpenses.map(expense => <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date}/>)
+        /* {props.expenseList.map((expense, i) => {
+          return (
+            <ExpenseItem key={i} title={expense.title} amount={expense.amount} date={expense.date} />
+          );
+        })} */}
       </Card>
     </div>
   );
