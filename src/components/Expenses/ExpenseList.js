@@ -5,12 +5,19 @@ import './ExpenseList.scss';
 
 const ExpenseList = props => {
   if (props.items.length === 0) {
-    return <p>No expense found.</p>;
+    return <h2 className="expense-list__fallback">Found no expenses.</h2>;
   }
 
   if (props.items.length > 0) {
     return <ul className="expense-list">
-      {props.items.map(expense => <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date}/>)}
+      {props.items.map((expense) => (
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
+      ))}
     </ul>
   }
 };
