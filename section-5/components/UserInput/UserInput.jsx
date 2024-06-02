@@ -1,12 +1,15 @@
-function UserInput () {
+function UserInput ( { onChangeHandler, userInput } ) {
+
   return (
-    <form id="user-input">
+    <section id="user-input">
       <div className="input-group">
         <p>
           <label htmlFor="current-savings">Current Savings ($)</label>
           <input
             type="number"
             id="current-savings"
+            value={userInput.initialInvestment}
+            onChange={(event) => onChangeHandler("initialInvestment", event.target.value)}
           />
         </p>
         <p>
@@ -14,6 +17,8 @@ function UserInput () {
           <input
             type="number"
             id="yearly-contribution"
+            value={userInput.annualInvestment}
+            onChange={(event) => onChangeHandler("annualInvestment", event.target.value)}
           />
         </p>
       </div>
@@ -25,6 +30,8 @@ function UserInput () {
           <input
             type="number"
             id="expected-return"
+            value={userInput.expectedReturn}
+            onChange={(event) => onChangeHandler("expectedReturn", event.target.value)}
           />
         </p>
         <p>
@@ -32,10 +39,12 @@ function UserInput () {
           <input
             type="number"
             id="duration"
+            value={userInput.duration}
+            onChange={(event) => onChangeHandler("duration", event.target.value)}
           />
         </p>
       </div>
-    </form>
+    </section>
   )
 }
 
